@@ -1,18 +1,12 @@
-from django.test import TestCase
-from django.test import Client
+from django.test import TestCase, Client
 from django.conf import settings
-import django 
-
-import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'goldenRaspberryAwardsDjango.settings')
-django.setup()
-
+import requests
 
 
 class TestIntegrations(TestCase):
 
     def test_get_200(self):
-        response = Client.get('/', {})
+        response = requests.get("http://127.0.0.1:8000/")
         response_expected = {
             "min": [
                 {
@@ -43,5 +37,6 @@ class TestIntegrations(TestCase):
                 }
             ]
         }
+
         assert response.status_code == 200
-        assert response.json == response_expected
+        assert response.json() == response_expected

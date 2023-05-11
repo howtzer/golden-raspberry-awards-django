@@ -10,7 +10,7 @@ class AppConfig(AppConfig):
 
     def ready(self):
         from .models import Movie, Producer, Movie_producer
-        """
+
         #limpa o banco de dados
         Movie.objects.all().delete()
         Producer.objects.all().delete()
@@ -20,7 +20,6 @@ class AppConfig(AppConfig):
 
         #alimenta o banco de dados
         for i in movie_list_dict:
-            print(i)
             movie = Movie()
             movie.year = i["year"]
             movie.title = i["title"]
@@ -43,4 +42,3 @@ class AppConfig(AppConfig):
                 )
 
         return movie_list_dict
-"""
